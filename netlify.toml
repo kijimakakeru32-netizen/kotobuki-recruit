@@ -1,0 +1,30 @@
+# Netlify 設定ファイル（触らなくてOKです）
+[build]
+  # ビルド不要の静的サイトなので、このフォルダをそのまま公開します
+  publish = "."
+  command = ""
+
+# 画像・CSS・JSのキャッシュ設定
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# config.js は更新頻度が高いのでキャッシュを短めに
+[[headers]]
+  for = "/js/config.js"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# 存在しないURLはトップページへ
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404
