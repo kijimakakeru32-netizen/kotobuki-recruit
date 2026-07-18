@@ -944,21 +944,13 @@ body.no-splash #splash{display:none}
 .movie-lead{font-size:clamp(22px,3.6vw,34px);margin-bottom:clamp(24px,4vw,40px);text-align:left}
 .movie-frame{
   position:relative;max-width:920px;margin:0 auto;aspect-ratio:16/9;
-  overflow:hidden;   /* 拡大した動画のはみ出しをクロップ */
   background:#000 url() center/cover;box-shadow:0 30px 64px -30px rgba(8,26,49,.5);
 }
 .movie-frame::before{
   content:"MOVIE LOADING…";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   color:rgba(255,255,255,.5);font-family:var(--font-en);font-size:12px;letter-spacing:.3em;
 }
-.movie-frame iframe{
-  position:absolute;left:50%;top:50%;
-  /* 少し拡大して、動画上下のタイトル帯・透かしを枠外にクロップ */
-  width:100%;height:100%;transform:translate(-50%,-50%) scale(1.35);
-  border:0;
-  /* クリック・ホバーを無効化（遷移やプレーヤーUIの再表示を防ぐ） */
-  pointer-events:none;
-}
+.movie-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .movie-text{
   max-width:680px;margin:clamp(22px,3.4vw,34px) auto 0;
   font-size:14.5px;line-height:2.1;color:var(--ink);
