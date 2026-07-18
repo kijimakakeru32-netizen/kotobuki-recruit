@@ -944,6 +944,7 @@ body.no-splash #splash{display:none}
 .movie-lead{font-size:clamp(22px,3.6vw,34px);margin-bottom:clamp(24px,4vw,40px);text-align:left}
 .movie-frame{
   position:relative;max-width:920px;margin:0 auto;aspect-ratio:16/9;
+  overflow:hidden;   /* 拡大した動画のはみ出しをクロップ */
   background:#000 url() center/cover;box-shadow:0 30px 64px -30px rgba(8,26,49,.5);
 }
 .movie-frame::before{
