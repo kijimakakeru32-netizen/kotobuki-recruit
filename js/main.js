@@ -245,11 +245,15 @@
     const load = () => {
       if (frame.dataset.loaded) return;
       frame.dataset.loaded = "1";
+      // UI・ロゴ・リンクを持たない「動画のみ」の見せ方:
+      //  - controls=0 等でプレーヤーUIを無効化
+      //  - iframeを少し拡大し、冒頭に出るタイトル帯（上）と透かし（右下）を枠外へクロップ
+      //  - 枠全体をクリック不可にして、遷移やホバーでのUI再表示を封じる
       frame.innerHTML = `<iframe
-        src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(vid)}?autoplay=1&mute=1&loop=1&playlist=${encodeURIComponent(vid)}&rel=0&playsinline=1"
-        title="${esc(m.lead)}"
-        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-        allowfullscreen loading="lazy"></iframe>`;
+        src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(vid)}?autoplay=1&mute=1&loop=1&playlist=${encodeURIComponent(vid)}&controls=0&rel=0&playsinline=1&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&showinfo=0"
+        title="紹介動画"
+        allow="autoplay; encrypted-media"
+        loading="lazy" tabindex="-1"></iframe>`;
     };
     if ("IntersectionObserver" in window) {
       const io = new IntersectionObserver((es) => {
