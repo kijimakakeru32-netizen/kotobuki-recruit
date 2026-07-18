@@ -113,8 +113,6 @@
       <div class="wrap f-grid">
         <div class="f-brand">
           ${logoHTML(true)}
-          <p>${nl(S.brand.description)}</p>
-          ${lineBtn(S.line.buttonText)}
         </div>
         <nav class="f-links" aria-label="フッターナビゲーション">
           ${S.footer.links.map(l => `<a href="${esc(l.href)}">${esc(l.text)}</a>`).join("")}
@@ -238,7 +236,7 @@
     if (!vid) return;
     el.innerHTML = `<div class="wrap">
       ${secHead(m.heading)}
-      <p class="sec-lead movie-lead rv">${esc(m.lead)}</p>
+      <p class="sec-lead movie-lead rv">${nl(m.lead)}</p>
       <div class="movie-frame rv" id="movie-frame" data-vid="${esc(vid)}"></div>
       <p class="movie-text rv">${nl(m.text)}</p>
     </div>`;
@@ -269,9 +267,8 @@
       <div class="about-cards">
         ${S.about.cards.map((c, i) => `
           <a class="about-card rv rv-d${i}" href="${esc(c.link)}">
-            <span class="bar"></span>
-            ${imgBox(c.img, c.title)}
-            <div class="txt"><h3>${esc(c.title)}</h3><p>${esc(c.text)}</p></div>
+            <span class="imgwrap">${imgBox(c.img, c.title)}</span>
+            <div class="txt"><h3>${esc(c.title)}<span class="go" aria-hidden="true">→</span></h3><p>${esc(c.text)}</p></div>
           </a>`).join("")}
       </div>
     </div>`;
@@ -314,7 +311,7 @@
         <summary>${esc(p.name)}<span class="cnt">${p.key === "chubu" ? "NEW" : p.stores.length + "院"}</span></summary>
         <ul>${p.stores.map(st => `
           <li>
-            <b>整体KOTOBUKI -寿- ${esc(st.name)}</b>
+            <b>${p.key === "chubu" ? "" : "整体KOTOBUKI -寿- "}${esc(st.name)}</b>
             <span>${esc(st.address)}</span>
             ${p.key === "chubu" ? "" : `<a class="gmap-btn" href="${gmap(st)}" target="_blank" rel="noopener">${PIN_ICON}Google Mapで見る</a>`}
           </li>`).join("")}</ul>
@@ -327,6 +324,7 @@
     el.innerHTML = `<div class="wrap">
       ${secHead(S.map.heading, true)}
       <p class="map-count rv">${leadHTML}</p>
+      ${S.map.note ? `<p class="map-note rv">${esc(S.map.note)}</p>` : ""}
       <p class="sec-sub rv">${esc(S.map.sub)}</p>
       <div class="map-grid">
         <div class="rv">${svg}</div>
@@ -335,20 +333,20 @@
     </div>`;
   }
 
-  /* ============ トップ:働く環境 ============ */
+  /* ============ トップ:働く環境（制度・カルチャー入口カード） ============ */
   function renderEnv() {
     const el = $("#environment"); if (!el) return;
     el.innerHTML = `<div class="wrap">
       ${secHead(S.environment.heading)}
       <p class="sec-lead rv">${esc(S.environment.lead)}</p>
       <p class="sec-sub rv">${esc(S.environment.sub)}</p>
-      <div class="env-list" style="margin-top:clamp(30px,4vw,50px)">
-        ${S.environment.items.map((it, i) => `
-          <div class="env-item rv rv-d${i % 3}">
-            <h3>${esc(it.title)}</h3><p>${esc(it.text)}</p>
-          </div>`).join("")}
+      <div class="about-cards" style="margin-top:clamp(30px,4vw,50px)">
+        ${S.environment.cards.map((c, i) => `
+          <a class="about-card rv rv-d${i}" href="${esc(c.link)}">
+            <span class="imgwrap">${imgBox(c.img, c.title)}</span>
+            <div class="txt"><h3>${esc(c.title)}<span class="go" aria-hidden="true">→</span></h3><p>${esc(c.text)}</p></div>
+          </a>`).join("")}
       </div>
-      <div class="env-spacer"></div>
     </div>`;
   }
 
@@ -478,23 +476,19 @@
     window.addEventListener("resize", () => { clearTimeout(cgT); cgT = setTimeout(equalize, 150); });
   }
 
-  /* ============ トップ:研修制度 ============ */
+  /* ============ トップ:研修制度（入口カード） ============ */
   function renderTraining() {
     const el = $("#training"); if (!el) return;
+    const c = S.training.card;
     el.innerHTML = `<div class="wrap">
       ${secHead(S.training.heading)}
       <p class="sec-lead rv">${esc(S.training.lead)}</p>
       <p class="sec-sub rv">${esc(S.training.sub)}</p>
-      <div class="training-list" style="margin-top:clamp(34px,5vw,56px)">
-        ${S.training.items.map((it, i) => `
-          <div class="training-item rv">
-            ${imgBox("", "研修写真（後日差し替え）", "t-img")}
-            <div>
-              <div class="t-no">0${i + 1}</div>
-              <h3>${esc(it.title)}</h3>
-              <p>${esc(it.text)}</p>
-            </div>
-          </div>`).join("")}
+      <div class="about-cards about-cards--single" style="margin-top:clamp(30px,4vw,50px)">
+        <a class="about-card rv" href="${esc(c.link)}">
+          <span class="imgwrap">${imgBox(c.img, c.title)}</span>
+          <div class="txt"><h3>${esc(c.title)}<span class="go" aria-hidden="true">→</span></h3><p>${esc(c.text)}</p></div>
+        </a>
       </div>
     </div>`;
   }
@@ -527,9 +521,8 @@
   }
 
   /* ============ トップ:CTA ============ */
-  function renderCTA() {
-    const el = $("#cta"); if (!el) return;
-    el.innerHTML = `
+  function ctaInner() {
+    return `
       <div class="cta-bg" aria-hidden="true">LINE US</div>
       <div class="wrap">
         ${secHead(S.cta.heading)}
@@ -537,8 +530,12 @@
           ${S.cta.lines.map(l => `<p>${esc(l)}</p>`).join("")}
         </div>
         <div class="rv rv-d1">${lineBtn(S.line.buttonText)}</div>
-        <p class="note rv rv-d2">友だち追加だけでもOK。しつこい連絡は一切しません。</p>
       </div>`;
+  }
+  function renderCTA() {
+    ["#cta", "#cta-bottom"].forEach(sel => {
+      const el = $(sel); if (el) el.innerHTML = ctaInner();
+    });
   }
 
   /* ============ トップ:入社までの流れ ============ */
@@ -563,7 +560,6 @@
         ${S.requirements.rows.map(r => `
           <div class="req-row"><dt>${esc(r.label)}</dt><dd>${esc(r.value)}</dd></div>`).join("")}
       </dl>
-      <div class="req-cta rv">${lineBtn("応募・相談はこちらから（LINE）")}</div>
     </div>`;
   }
 
@@ -594,6 +590,7 @@
             <div class="qa rv">
               <div class="q"><span class="q-no">Q${i + 1}</span><h2>${esc(q)}</h2></div>
               <p class="a">${nl(p.answers[i] || "")}</p>
+              ${qaPhoto(p.photos && p.photos[i])}
             </div>`).join("")}
         </div>
       </div>
@@ -604,9 +601,13 @@
           <div class="iv-cards">${others.map((o, i) => ivCard(o, i)).join("")}</div>
         </div>
       </div>
-      <section class="sec sec--navy" style="text-align:center">
+      <section class="sec sec--navy cta-sec" id="cta" style="text-align:center">
+        <div class="cta-bg" aria-hidden="true">LINE US</div>
         <div class="wrap">
-          <p class="sec-lead rv" style="margin-bottom:24px">${esc(S.cta.lines[0])}</p>
+          ${secHead(S.cta.heading)}
+          <div class="cta-lines rv">
+            ${S.cta.lines.map(l => `<p>${esc(l)}</p>`).join("")}
+          </div>
           <div class="rv rv-d1">${lineBtn(S.line.buttonText)}</div>
         </div>
       </section>`;
@@ -643,12 +644,181 @@
           </div>
         </div>
       </section>
-      <section class="sec sec--navy" style="text-align:center">
+      <section class="sec sec--navy cta-sec" id="cta" style="text-align:center">
+        <div class="cta-bg" aria-hidden="true">LINE US</div>
         <div class="wrap">
-          <p class="sec-lead cta-oneline rv" style="margin-bottom:24px">可能性は無限大。主人公はあなた。</p>
+          ${secHead(S.cta.heading)}
+          <div class="cta-lines rv">
+            ${S.cta.lines.map(l => `<p>${esc(l)}</p>`).join("")}
+          </div>
           <div class="rv rv-d1">${lineBtn(S.line.buttonText)}</div>
         </div>
       </section>`;
+  }
+
+  /* インタビュー本文中の写真ブロック（img=1枚 / imgs=複数枚を縦に並べる） */
+  function qaPhoto(ph) {
+    if (!ph) return "";
+    const list = (ph.imgs && ph.imgs.length ? ph.imgs : [ph.img]).filter(Boolean);
+    if (!list.length) return "";
+    return `<figure class="qa-photo">
+      ${list.map(src => imgBox(src, ph.caption || "写真")).join("")}
+      ${ph.caption ? `<figcaption>${nl(ph.caption)}</figcaption>` : ""}
+    </figure>`;
+  }
+
+  /* 制度の線画アイコン（benefits.itemsのicon番号に対応） */
+  const ENV_ICONS = [
+    // 0: カレンダー
+    `<svg viewBox="0 0 24 24"><rect x="3.2" y="5" width="17.6" height="15.4" rx="1.6"/><path d="M3.2 9.6h17.6M7.8 3.2v3.4M16.2 3.2v3.4"/><path d="M8.4 13.6h2.2M13.4 13.6h2.2M8.4 17h2.2"/></svg>`,
+    // 1: 盾＋チェック
+    `<svg viewBox="0 0 24 24"><path d="M12 3l7 2.6v6c0 4.4-2.9 8.2-7 9.4-4.1-1.2-7-5-7-9.4v-6Z"/><path d="M8.8 12.1l2.2 2.2 4.2-4.4"/></svg>`,
+    // 2: 右肩上がりグラフ
+    `<svg viewBox="0 0 24 24"><path d="M3.4 20.2h17.2"/><path d="M6 16.4l4.2-4.4 3.2 2.8 5.4-6.6"/><path d="M14.6 8.2h4.2v4.2"/></svg>`,
+    // 3: 贈り物の箱
+    `<svg viewBox="0 0 24 24"><rect x="3.4" y="9.4" width="17.2" height="11" rx="1.2"/><path d="M2.6 9.4h18.8M12 9.4v11"/><path d="M12 9.4c-2.6 0-4.6-1-4.6-3S9.6 3.2 12 9.4Zm0 0c2.6 0 4.6-1 4.6-3S14.4 3.2 12 9.4Z"/></svg>`,
+    // 4: 3人のチーム
+    `<svg viewBox="0 0 24 24"><circle cx="12" cy="7.4" r="2.8"/><path d="M7.4 15.6c1-2.2 2.7-3.2 4.6-3.2s3.6 1 4.6 3.2"/><circle cx="4.8" cy="11.4" r="2.1"/><path d="M1.6 18.4c.7-1.8 1.9-2.6 3.2-2.6"/><circle cx="19.2" cy="11.4" r="2.1"/><path d="M22.4 18.4c-.7-1.8-1.9-2.6-3.2-2.6"/></svg>`,
+    // 5: ヤシの木と太陽
+    `<svg viewBox="0 0 24 24"><circle cx="17.6" cy="6.4" r="2.6"/><path d="M2.6 20.6h18.8"/><path d="M8.6 20.6c-.4-4.4.2-7.6 1.4-9.8"/><path d="M10 10.8c-2-1.4-4.2-1.2-5.8.4M10 10.8c-.6-2.3.3-4.2 2.2-5.2M10 10.8c2.3-.9 4.3-.2 5.4 1.6"/></svg>`
+  ];
+
+  /* 研修制度ページの特長アイコン */
+  const TRAIN_ICONS = {
+    book: `<svg viewBox="0 0 24 24"><path d="M12 6c-2-1.6-5-1.6-8-.4v13c3-1.2 6-1.2 8 .4 2-1.6 5-1.6 8-.4V5.6c-3-1.2-6-1.2-8 .4Z"/><path d="M12 6v13.6"/></svg>`,
+    brain: `<svg viewBox="0 0 24 24"><path d="M12 5.5c-1.6-2-5.4-1.6-5.4 1.4-2 .4-2.4 3.4-.6 4.4-1 1.8.4 4 2.4 3.8.2 1.8 2 2.6 3.6 1.8V5.5Z"/><path d="M12 5.5c1.6-2 5.4-1.6 5.4 1.4 2 .4 2.4 3.4.6 4.4 1 1.8-.4 4-2.4 3.8-.2 1.8-2 2.6-3.6 1.8"/></svg>`,
+    shield: `<svg viewBox="0 0 24 24"><path d="M12 3l7 2.6v6c0 4.4-2.9 8.2-7 9.4-4.1-1.2-7-5-7-9.4v-6Z"/><path d="M8.8 12.1l2.2 2.2 4.2-4.4"/></svg>`,
+    star: `<svg viewBox="0 0 24 24"><path d="M12 3.5l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4-3.9-3.8 5.4-.8Z"/></svg>`
+  };
+
+  /* 下層ページ共通CTA */
+  function subCta() {
+    return `
+      <section class="sec sec--navy cta-sec" id="cta" style="text-align:center">
+        <div class="cta-bg" aria-hidden="true">LINE US</div>
+        <div class="wrap">
+          ${secHead(S.cta.heading)}
+          <div class="cta-lines rv">
+            ${S.cta.lines.map(l => `<p>${esc(l)}</p>`).join("")}
+          </div>
+          <div class="rv rv-d1">${lineBtn(S.line.buttonText)}</div>
+        </div>
+      </section>`;
+  }
+
+  /* ============ 下層:制度 ============ */
+  function renderBenefits() {
+    const root = $("#benefits-page"); if (!root) return;
+    const b = S.benefits;
+    document.title = `制度｜${S.brand.nameJa} 採用サイト`;
+    root.innerHTML = `
+      <div class="sub-hero">
+        <div class="wrap">
+          <p class="bc rv">TOP &gt; 働く環境 &gt; 制度</p>
+          ${secHead(b.heading)}
+        </div>
+      </div>
+      <section class="sec">
+        <div class="wrap">
+          <p class="story-lead rv">${esc(b.lead)}</p>
+          <div class="benefit-intro rv">${fmt(b.intro)}</div>
+          <div class="story-main-img rv">${imgBox(b.mainImg, "会社の雰囲気が伝わる写真（後日差し替え）")}</div>
+          <div class="env-list" style="margin-top:clamp(40px,6vw,64px)">
+            ${b.items.map((it, i) => `
+              <div class="env-item rv rv-d${i % 3}">
+                <div class="env-icon">${ENV_ICONS[it.icon] || ENV_ICONS[0]}</div>
+                <div class="env-no">0${i + 1}</div>
+                <h3>${esc(it.title)}</h3><p>${esc(it.text)}</p>
+              </div>`).join("")}
+          </div>
+          <div class="env-spacer"></div>
+        </div>
+      </section>
+      ${subCta()}`;
+  }
+
+  /* ============ 下層:カルチャー ============ */
+  function renderCulture() {
+    const root = $("#culture-page"); if (!root) return;
+    const c = S.culture;
+    document.title = `カルチャー｜${S.brand.nameJa} 採用サイト`;
+    root.innerHTML = `
+      <div class="sub-hero">
+        <div class="wrap">
+          <p class="bc rv">TOP &gt; 働く環境 &gt; カルチャー</p>
+          ${secHead(c.heading)}
+        </div>
+      </div>
+      <section class="sec cul-intro">
+        <div class="wrap">
+          <div class="cul-intro-grid">
+            <div class="cul-intro-txt">
+              <span class="cul-intro-en rv">OUR CULTURE</span>
+              <h2 class="cul-intro-lead rv">${nl(c.lead)}</h2>
+              ${c.intro ? `<div class="cul-intro-body rv">${fmt(c.intro)}</div>` : ""}
+            </div>
+            <div class="cul-intro-media rv">
+              ${imgBox(c.introImg, "カルチャーのメインビジュアル")}
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="sec cul-sec">
+        <div class="wrap">
+          <div class="cul-list">
+            ${c.items.map((it, i) => `
+              <div class="cul-item rv ${i % 2 ? "is-rev" : ""}">
+                <div class="cul-img">${imgBox(it.img, it.title + "の写真（後日差し替え）")}</div>
+                <div class="cul-txt">
+                  <div class="cul-no">0${i + 1}</div>
+                  <h2>${esc(it.title)}</h2>
+                  <p>${fmt(it.text)}</p>
+                </div>
+              </div>`).join("")}
+          </div>
+        </div>
+      </section>
+      ${subCta()}`;
+  }
+
+  /* ============ 下層:研修制度 ============ */
+  function renderTrainingPage() {
+    const root = $("#training-page"); if (!root) return;
+    const t = S.training;
+    document.title = `研修制度｜${S.brand.nameJa} 採用サイト`;
+    root.innerHTML = `
+      <div class="sub-hero">
+        <div class="wrap">
+          <p class="bc rv">TOP &gt; 研修制度</p>
+          ${secHead(t.heading)}
+        </div>
+      </div>
+      <section class="sec cul-intro">
+        <div class="wrap">
+          <div class="cul-intro-grid">
+            <div class="cul-intro-txt">
+              <span class="cul-intro-en rv">TRAINING</span>
+              <h2 class="cul-intro-lead rv">${esc(t.lead)}</h2>
+              <div class="cul-intro-body rv">${fmt(t.intro)}</div>
+            </div>
+            <div class="cul-intro-media rv">${imgBox(t.mainImg, "研修風景")}</div>
+          </div>
+        </div>
+      </section>
+      <section class="sec cul-sec">
+        <div class="wrap">
+          <div class="train-feats">
+            ${t.features.map((f, i) => `
+              <div class="train-feat rv rv-d${i % 3}">
+                <div class="tf-icon">${TRAIN_ICONS[f.icon] || TRAIN_ICONS.book}</div>
+                <div class="tf-no">0${i + 1}</div>
+                <h3>${esc(f.title)}</h3>
+                <p>${fmt(f.text)}</p>
+              </div>`).join("")}
+          </div>
+        </div>
+      </section>
+      ${subCta()}`;
   }
 
   /* ============ 下層:代表メッセージ ============ */
@@ -679,9 +849,13 @@
           <p class="msg-sign rv">${esc(m.signature)}</p>
         </div>
       </section>
-      <section class="sec sec--navy" style="text-align:center">
+      <section class="sec sec--navy cta-sec" id="cta" style="text-align:center">
+        <div class="cta-bg" aria-hidden="true">LINE US</div>
         <div class="wrap">
-          <p class="sec-lead rv" style="margin-bottom:24px">まずは、一度話しましょう。</p>
+          ${secHead(S.cta.heading)}
+          <div class="cta-lines rv">
+            ${S.cta.lines.map(l => `<p>${esc(l)}</p>`).join("")}
+          </div>
           <div class="rv rv-d1">${lineBtn(S.line.buttonText)}</div>
         </div>
       </section>`;
@@ -736,6 +910,9 @@
     renderInterviewPage();
     renderStory();
     renderMessage();
+    renderBenefits();
+    renderCulture();
+    renderTrainingPage();
     observe();
     splash();
   });
