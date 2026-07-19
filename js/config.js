@@ -63,7 +63,7 @@ window.SITE = {
     heading: { en: "MOVIE", ja: "ムービー" },
     lead: "なりたいものなら、\n何者にでもなれる",
     // YouTubeのURLをそのまま貼り付けてOK（動画IDだけでも可）
-    youtube: "https://www.youtube.com/watch?v=COtsKkmKNDI",
+    youtube: "https://www.youtube.com/watch?v=C9ZRvNqQlQo",
     // ※「KOTOBUKI AWARD」の間は、途中で改行されないよう特殊なスペース（改行しない空白）を使っています
     text: "年に一度、全社員が集まる社員総会「KOTOBUKI\u00A0AWARD」を開催。\n一年間、お客様のためにベストを尽くした仲間たちの努力と成果を、心から称え合う大切な一日です。"
   },
