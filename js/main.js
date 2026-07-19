@@ -770,7 +770,7 @@
               <div class="cul-item rv ${i % 2 ? "is-rev" : ""}">
                 <div class="cul-img">${imgBox(it.img, it.title + "の写真（後日差し替え）")}</div>
                 <div class="cul-txt">
-                  <div class="cul-no">0${i + 1}</div>
+                  <div class="cul-no">CULTURE</div>
                   <h2>${esc(it.title)}</h2>
                   <p>${fmt(it.text)}</p>
                 </div>

@@ -1029,20 +1029,58 @@ body.no-splash #splash{display:none}
   font-size:clamp(15px,1.3vw,16.5px);font-weight:500;line-height:2.2;
   color:var(--ink);white-space:pre-line;
 }
-.cul-list{margin-top:clamp(36px,5.4vw,60px);display:flex;flex-direction:column;gap:clamp(44px,6.4vw,76px)}
-.cul-item{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,4vw,52px);align-items:center}
-.cul-item.is-rev .cul-img{order:2}
-.cul-img .imgbox{aspect-ratio:16/10;box-shadow:0 26px 54px -28px rgba(8,26,49,.4)}
-.cul-no{
-  font-family:var(--font-en);font-size:clamp(30px,3.6vw,44px);line-height:1;
-  color:transparent;-webkit-text-stroke:1.2px var(--blue-fresh-2);
-  margin-bottom:10px;
+.cul-list{margin-top:clamp(36px,5.4vw,60px);display:flex;flex-direction:column;gap:clamp(56px,8vw,104px)}
+.cul-item{
+  display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(30px,5vw,72px);align-items:center;
+  position:relative;
 }
-.cul-txt h2{font-size:clamp(19px,2.3vw,25px);font-weight:900;color:var(--navy-900);margin-bottom:12px}
-.cul-txt p{font-size:15px;line-height:2.1;color:var(--ink)}
+/* 番号を大きく背景に敷く（項目のまとまりを作る目印） */
+.cul-item::before{
+  counter-increment:culc;
+  content:counter(culc,decimal-leading-zero);
+  position:absolute;top:-46px;left:-10px;z-index:0;
+  font-family:var(--font-en);font-size:clamp(74px,11vw,150px);line-height:1;font-weight:400;
+  color:transparent;-webkit-text-stroke:1.5px rgba(31,176,239,.16);
+  pointer-events:none;
+}
+.cul-list{counter-reset:culc}
+.cul-item.is-rev{grid-template-columns:.98fr 1.02fr}
+.cul-item.is-rev .cul-img{order:2}
+.cul-item.is-rev::before{left:auto;right:-10px}
+/* 写真: 青オフセットパネル＋シャドウ＋ホバーズーム */
+.cul-img{position:relative;z-index:1}
+.cul-img::after{
+  content:"";position:absolute;z-index:0;
+  top:16px;left:16px;right:-16px;bottom:-16px;
+  background:linear-gradient(150deg,var(--blue-fresh-1) 0%,var(--blue-fresh-2) 48%,var(--blue-fresh-3) 100%);
+  transition:transform .5s var(--ease);
+}
+.cul-item.is-rev .cul-img::after{left:-16px;right:16px}
+.cul-item:hover .cul-img::after{transform:translate(4px,4px)}
+.cul-img .imgbox{
+  position:relative;z-index:1;aspect-ratio:4/3;overflow:hidden;
+  box-shadow:0 30px 60px -30px rgba(8,26,49,.5);
+}
+.cul-img .imgbox img{transition:transform 1s var(--ease)}
+.cul-item:hover .cul-img .imgbox img{transform:scale(1.05)}
+/* テキスト: ラベル＋見出し＋本文をひとかたまりに */
+.cul-txt{position:relative;z-index:2}
+.cul-no{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:var(--font-en);font-size:clamp(15px,1.6vw,18px);letter-spacing:.16em;
+  color:var(--blue-fresh-3);-webkit-text-stroke:0;margin-bottom:16px;font-weight:700;
+}
+.cul-no::before{content:"";width:34px;height:2px;background:var(--blue-fresh-2)}
+.cul-txt h2{
+  font-size:clamp(20px,2.5vw,27px);font-weight:900;color:var(--navy-900);
+  margin-bottom:16px;line-height:1.5;
+}
+.cul-txt p{font-size:15px;line-height:2.15;color:var(--ink)}
 @media (max-width:820px){
-  .cul-item{grid-template-columns:1fr;gap:16px}
+  .cul-item,.cul-item.is-rev{grid-template-columns:1fr;gap:20px}
   .cul-item.is-rev .cul-img{order:0}
+  .cul-item::before,.cul-item.is-rev::before{top:-30px;left:-4px;right:auto;font-size:64px}
+  .cul-img::after,.cul-item.is-rev .cul-img::after{top:10px;left:10px;right:-10px;bottom:-10px}
   .cul-txt p{font-size:14px}
 }
 
