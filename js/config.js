@@ -322,7 +322,7 @@ window.SITE = {
         page: "interview-utsugi.html",
         name: "打木 敦也",
         job: "前職：作業療法士",
-        title: "整体を通じて、病院に行かなくてもいい未来をつくりたい。",
+        title: "整体を通じて、病院に行かなくてもいい未来をつくりたい",
         photo: "assets/img/utsugi.jpg",
         photoLabel: "打木プロフィール写真",
         questions: [
