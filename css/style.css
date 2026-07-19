@@ -1153,3 +1153,10 @@ body.no-splash #splash{display:none}
 @media (max-width:720px){
   .train-feats{grid-template-columns:1fr}
 }
+
+/* 研修ページ: ラベル脇の小さな線画アイコン（カルチャー流用の .cul-no 内に配置） */
+.cul-no .cul-ic{
+  display:inline-grid;place-items:center;width:26px;height:26px;flex:none;
+  background:linear-gradient(150deg,var(--blue-fresh-1),var(--blue-fresh-3));
+}
+.cul-no .cul-ic svg{width:58%;height:58%;fill:none;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}

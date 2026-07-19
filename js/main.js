@@ -807,13 +807,15 @@
       </section>
       <section class="sec cul-sec">
         <div class="wrap">
-          <div class="train-feats">
+          <div class="cul-list">
             ${t.features.map((f, i) => `
-              <div class="train-feat rv rv-d${i % 3}">
-                <div class="tf-icon">${TRAIN_ICONS[f.icon] || TRAIN_ICONS.book}</div>
-                <div class="tf-no">0${i + 1}</div>
-                <h3>${esc(f.title)}</h3>
-                <p>${fmt(f.text)}</p>
+              <div class="cul-item rv ${i % 2 ? "is-rev" : ""}">
+                <div class="cul-img">${imgBox(f.img, f.title + "の写真（後日差し替え）")}</div>
+                <div class="cul-txt">
+                  <div class="cul-no"><span class="cul-ic">${TRAIN_ICONS[f.icon] || TRAIN_ICONS.book}</span>TRAINING</div>
+                  <h2>${esc(f.title)}</h2>
+                  <p>${fmt(f.text)}</p>
+                </div>
               </div>`).join("")}
           </div>
         </div>
