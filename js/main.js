@@ -830,11 +830,14 @@
           <div class="voice-grid">
             ${t.voices.map(v => `
               <article class="voice-card rv">
-                <h3>${esc(v.heading)}</h3>
-                <p>${fmt(v.text)}</p>
-                <div class="voice-profile">
-                  <span class="voice-ava">${imgBox(v.img, v.name)}</span>
-                  <span class="voice-meta"><b>${esc(v.name)}</b><small>${esc(v.role)}</small></span>
+                <div class="voice-photo">${imgBox(v.img, v.name)}</div>
+                <div class="voice-body">
+                  <h3>${esc(v.heading)}</h3>
+                  <p>${fmt(v.text)}</p>
+                  <div class="voice-meta">
+                    <b>${esc(v.name)}</b>
+                    <small>${esc(v.role)}${v.store ? " ・ " + esc(v.store) : ""}</small>
+                  </div>
                 </div>
               </article>`).join("")}
           </div>
