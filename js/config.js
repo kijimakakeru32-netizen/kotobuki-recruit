@@ -39,7 +39,7 @@ window.SITE = {
   hero: {
     copyLines: ["治療家としての自分に", "もう嘘はつかない"],
     sub: "保険診療で培った経験を、根本改善を目指す自費診療のキャリアへ。\n整体KOTOBUKIは、あなたの臨床経験を土台にできる。\n\n同じ志を持った仲間と共に、\n「人の健康を支えるプロ」になろう。",
-    enTagline: "STAY TRUE, HEAL DEEPER.",   // 英字タグライン（王将の \"Move hearts, Be a pro.\" 的な一行）
+    enTagline: "",   // 英字タグライン（空にすると非表示）
     // 背景写真は複数登録すると自動で切り替わります（3〜5枚推奨）
     images: [
       { img: "assets/img/fv-01.jpg", label: "FV写真①（施術風景）" },
