@@ -1216,3 +1216,33 @@ body.no-splash #splash{display:none}
   .voice-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}
   .voice-photo .imgbox{aspect-ratio:16/11}
 }
+
+/* =====================================================
+   タッチデバイス最適化: タップ即遷移（ホバー演出を無効化）
+   マウス環境(hover:hover)以外では、カードのホバー変形を打ち消し、
+   タップ時の遅延感をなくす。タップ中は軽い押下フィードバックのみ。
+   ===================================================== */
+@media (hover: none), (pointer: coarse) {
+  /* 遷移系カードのホバー変形をすべて無効化（タップで即反応） */
+  .about-card:hover .imgwrap::after,
+  .about-card:hover .imgbox img,
+  .about-card:hover .go,
+  .iv-card:hover .imgbox img,
+  .iv-card:hover .more::after,
+  .cul-item:hover .cul-img::after,
+  .cul-item:hover .cul-img .imgbox img,
+  .voice-card:hover .voice-photo .imgbox img {
+    transform: none !important;
+  }
+  .about-card:hover .go{background:var(--white);color:var(--blue-fresh-3)}
+
+  /* タップ中のハイライトを消し、軽い押下感だけ付与 */
+  .about-card, .iv-card, .cul-item, a.btn-line, .go {
+    -webkit-tap-highlight-color: transparent;
+  }
+  .about-card:active, .iv-card:active {
+    opacity: .72;
+    transition: opacity .05s linear;
+  }
+  a.btn-line:active { transform: scale(.98); transition: transform .05s linear; }
+}
