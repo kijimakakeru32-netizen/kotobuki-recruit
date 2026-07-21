@@ -73,16 +73,16 @@ window.SITE = {
     heading: { en: "ABOUT", ja: "整体KOTOBUKIを知る" },
     cards: [
       {
-        title: "創業ストーリー",
-        text: "整体KOTOBUKIの創業から、いまへ。受け継がれてきた想いをたどる。",
-        img: "assets/img/story-thumb.jpg",
-        link: "story.html"
-      },
-      {
         title: "代表メッセージ",
         text: "代表から、未来の仲間へ。いま伝えたいこと。",
         img: "assets/img/message-thumb.jpg",
         link: "message.html"
+      },
+      {
+        title: "創業ストーリー",
+        text: "整体KOTOBUKIの創業から、いまへ。受け継がれてきた想いをたどる。",
+        img: "assets/img/story-thumb.jpg",
+        link: "story.html"
       }
     ]
   },
@@ -495,8 +495,8 @@ window.SITE = {
   nav: [
     { text: "KOTOBUKIを知る", en: "ABOUT",       href: "index.html#about",
       children: [
-        { text: "創業ストーリー", href: "story.html" },
-        { text: "代表メッセージ", href: "message.html" }
+        { text: "代表メッセージ", href: "message.html" },
+        { text: "創業ストーリー", href: "story.html" }
       ]
     },
     { text: "店舗マップ",     en: "LOCATIONS",   href: "index.html#map",
