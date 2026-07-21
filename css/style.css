@@ -1164,13 +1164,13 @@ body.no-splash #splash{display:none}
 /* =====================================================
    研修: 研修を受けた社員の声（VOICE）
    ===================================================== */
-.voice-sec{background:var(--navy-50,#F3F6FB)}
+.voice-sec{background:linear-gradient(150deg,var(--blue-fresh-1) 0%,var(--blue-fresh-2) 45%,var(--blue-fresh-3) 100%)}
 .voice-head{text-align:center;margin-bottom:clamp(30px,4.4vw,48px)}
 .voice-head .sec-head-en{
   font-family:var(--font-en);font-size:clamp(13px,1.5vw,15px);letter-spacing:.24em;
-  color:var(--blue-fresh-3);font-weight:700;display:block;margin-bottom:10px;
+  color:rgba(255,255,255,.85);font-weight:700;display:block;margin-bottom:10px;
 }
-.voice-title{font-size:clamp(21px,2.8vw,30px);font-weight:900;color:var(--navy-900)}
+.voice-title{font-size:clamp(21px,2.8vw,30px);font-weight:900;color:var(--white)}
 .voice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,28px)}
 .voice-card{
   background:var(--white);

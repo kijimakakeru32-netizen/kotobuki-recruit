@@ -825,7 +825,7 @@
         <div class="wrap">
           <div class="voice-head">
             <span class="sec-head-en">VOICE</span>
-            <h2 class="voice-title">研修を受けた社員の声</h2>
+            <h2 class="voice-title">研修を受けたメンバーの声</h2>
           </div>
           <div class="voice-grid">
             ${t.voices.map(v => `
