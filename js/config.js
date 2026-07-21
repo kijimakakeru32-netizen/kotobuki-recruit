@@ -228,7 +228,7 @@ window.SITE = {
     /* トップに置くカード（1枚）。creativeに遷移します */
     card: {
       title: "研修制度",
-      text: "医療国家資格の知識を、自費診療の現場で結果につなげるための研修体系。",
+      text: "整体未経験からでも、お客様の結果につなげられる研修体系。",
       img: "assets/img/training-thumb.jpg",
       link: "training.html"
     },
