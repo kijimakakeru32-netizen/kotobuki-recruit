@@ -285,6 +285,26 @@ body.no-splash #splash{display:none}
 }
 #hero.is-ready .hero-en{opacity:1;transform:none}
 
+/* PC: 左メッセージ・右写真の2カラム（モバイルは従来の縦積み） */
+@media (min-width:900px){
+  #hero{flex-direction:row;min-height:88vh}
+  .hero-slides{order:2;flex:1 1 52%;height:auto;min-height:88vh}
+  .hero-msg{
+    order:1;flex:1 1 48%;
+    /* 斜めカットは右端に付ける（写真との境界） */
+    margin-top:0;margin-right:calc(-1 * var(--slant));
+    clip-path:polygon(0 0,100% 0,calc(100% - var(--slant)) 100%,0 100%);
+    padding:clamp(40px,6vh,90px) clamp(40px,4.5vw,80px) clamp(40px,6vh,90px) max(6%,calc((100% - 1120px)/2));
+    z-index:5;
+  }
+  .hero-copy{font-size:clamp(28px,3vw,46px);white-space:normal;word-break:keep-all;overflow-wrap:break-word}
+  .hero-sub{max-width:none}
+}
+@media (min-width:1280px){
+  .hero-msg{flex-basis:46%}
+  .hero-slides{flex-basis:54%}
+}
+
 /* =====================================================
    画像スライダー（マーキー）
    ===================================================== */
