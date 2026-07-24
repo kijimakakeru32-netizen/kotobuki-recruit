@@ -21,7 +21,7 @@ window.SITE = {
     nameJa: "整体KOTOBUKI",
     nameSub: "-寿-",
     siteTitle: "整体KOTOBUKI 採用サイト｜治療家としての自分に、もう嘘はつかない",
-    description: "保険診療で培った経験を、根本改善を目指す自費診療のキャリアへ。理学療法士・作業療法士・柔道整復師の転職なら整体KOTOBUKI。",
+    description: "予防医学を浸透させ、人生100年時代を本物に。保険診療で培った経験を、根本改善を目指す自費診療のキャリアへ。",
     logoImg: "assets/img/logo-black.png",        // ヘッダー用ロゴ（黒文字・透過）
     logoImgWhite: "assets/img/logo-white.png",   // フッター用ロゴ（白文字・透過）
     copyright: "© 整体KOTOBUKI -寿- All rights reserved."
