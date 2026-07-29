@@ -228,6 +228,21 @@
   }
 
   /* ============ トップ:ムービー（YouTube埋め込み） ============ */
+  function renderSponsor() {
+    const el = $("#sponsor"); if (!el || !S.sponsor) return;
+    const s = S.sponsor;
+    el.innerHTML = `<div class="wrap">
+      <div class="sponsor-inner rv">
+        <div class="sponsor-logo"><span class="sponsor-iso">${imgBox(s.logo, "千葉ロッテマリーンズ")}</span></div>
+        <div class="sponsor-body">
+          <span class="sponsor-label">OFFICIAL SPONSOR</span>
+          <h2 class="sponsor-title">${esc(s.title)}</h2>
+          <p class="sponsor-text">${nl(s.text)}</p>
+        </div>
+      </div>
+    </div>`;
+  }
+
   function renderMovie() {
     const el = $("#movie"); if (!el || !S.movie) return;
     const m = S.movie;
@@ -914,7 +929,7 @@
   }
 
   /* ============ 起動 ============ */
-  document.addEventListener("DOMContentLoaded", () => {
+  function renderAll() {
     if ($("#hero")) document.title = S.brand.siteTitle;
     const meta = document.querySelector('meta[name="description"]');
     if (meta && !meta.content) meta.content = S.brand.description;
@@ -922,6 +937,7 @@
     renderChrome();
     renderHero();
     renderGallery();
+    renderSponsor();
     renderMovie();
     renderAbout();
     renderMap();
@@ -940,5 +956,7 @@
     renderTrainingPage();
     observe();
     splash();
-  });
+  }
+  window.__renderAll = renderAll;
+  document.addEventListener("DOMContentLoaded", renderAll);
 })();
