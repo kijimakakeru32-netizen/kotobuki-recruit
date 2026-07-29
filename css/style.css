@@ -1286,6 +1286,7 @@ body.no-splash #splash{display:none}
 .sponsor-body{text-align:left}
 @media (max-width:760px){
   .sponsor-inner{grid-template-columns:1fr;gap:22px;text-align:left}
-  .sponsor-iso{width:clamp(150px,44vw,200px);margin:0}
-  .sponsor-logo{justify-content:flex-start}
+  /* ロゴは中央寄せ、文章は左寄せのまま */
+  .sponsor-iso{width:clamp(150px,44vw,200px);margin:0 auto}
+  .sponsor-logo{justify-content:center}
 }
