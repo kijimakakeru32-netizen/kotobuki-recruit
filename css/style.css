@@ -1266,23 +1266,26 @@ body.no-splash #splash{display:none}
 .sponsor-iso .imgbox{aspect-ratio:1154/1204;background:transparent;box-shadow:none}
 .sponsor-iso .imgbox img{object-fit:contain}
 .sponsor-iso .ph{background:transparent}
+/* 英字ラベルは Founders Grotesk（未導入環境では近似サンセリフにフォールバック） */
 .sponsor-label{
-  font-family:var(--font-en);font-size:clamp(12px,1.4vw,14px);letter-spacing:.22em;
-  color:#000;font-weight:700;display:flex;align-items:center;gap:12px;margin-bottom:16px;
+  font-family:"Founders Grotesk","Founders Grotesk Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:clamp(12px,1.4vw,14px);letter-spacing:.18em;
+  color:#000;font-weight:600;display:flex;align-items:center;gap:12px;margin-bottom:18px;
 }
-.sponsor-label::before{content:"";width:34px;height:2px;background:#000}
+.sponsor-label::before{content:"";width:34px;height:2px;background:#000;flex:none}
+/* 日本語はすべて Noto Sans JP */
 .sponsor-title{
-  font-family:"Noto Sans JP",sans-serif;font-weight:900;color:#000;
-  font-size:clamp(19px,2.5vw,28px);line-height:1.6;margin-bottom:18px;
+  font-family:"Noto Sans JP",sans-serif;font-weight:700;color:#000;
+  font-size:clamp(20px,2.6vw,30px);line-height:1.65;margin-bottom:20px;
 }
 .sponsor-text{
   font-family:"Noto Sans JP",sans-serif;font-weight:400;color:#000;
   font-size:clamp(14px,1.15vw,15.5px);line-height:2.1;
 }
+/* 文章は他セクション同様つねに左寄せ */
+.sponsor-body{text-align:left}
 @media (max-width:760px){
-  .sponsor-inner{grid-template-columns:1fr;gap:8px;text-align:center}
-  .sponsor-label{justify-content:center}
-  .sponsor-label::before{display:none}
-  .sponsor-iso{width:clamp(150px,44vw,200px);margin:0 auto}
-  .sponsor-text{text-align:left}
+  .sponsor-inner{grid-template-columns:1fr;gap:22px;text-align:left}
+  .sponsor-iso{width:clamp(150px,44vw,200px);margin:0}
+  .sponsor-logo{justify-content:flex-start}
 }

@@ -236,7 +236,7 @@
         <div class="sponsor-logo"><span class="sponsor-iso">${imgBox(s.logo, "千葉ロッテマリーンズ")}</span></div>
         <div class="sponsor-body">
           <span class="sponsor-label">OFFICIAL SPONSOR</span>
-          <h2 class="sponsor-title">${esc(s.title)}</h2>
+          <h2 class="sponsor-title">${nl(s.title)}</h2>
           <p class="sponsor-text">${nl(s.text)}</p>
         </div>
       </div>
