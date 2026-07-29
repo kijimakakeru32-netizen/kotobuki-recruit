@@ -51,6 +51,12 @@
   }
 
   function renderChrome() {
+    // 既存のヘッダー/メニュー/フッター等を除去（再描画時の重複を防ぐ）
+    ["#header", "#mobile-menu", "#footer", "#sticky-cta", "#totop", "#splash"].forEach((sel) => {
+      const el = document.querySelector(sel);
+      if (el && el.parentNode) el.parentNode.removeChild(el);
+    });
+
     // ヘッダー
     const header = document.createElement("header");
     header.id = "header";
