@@ -30,9 +30,9 @@ window.SITE = {
   /* ---------- LINE（すべてのCTAボタンの飛び先） ---------- */
   line: {
     url: "https://line.me/R/ti/p/@688grfoi?oat_content=url&ts=06241006",     // 公式LINEの登録URL
-    buttonText: "LINEで話を聞いてみる",
-    shortText: "LINE登録",                // スマホのヘッダーボタン用（短い文言）
-    stickyText: "LINEで話を聞いてみる"  // スマホ下部の追従ボタンの文言
+    buttonText: "5秒でLINE登録",
+    shortText: "5秒でLINE登録",           // スマホのヘッダーボタン用
+    stickyText: "5秒でLINE登録"           // スマホ下部の追従ボタンの文言
   },
 
   /* ---------- ファーストビュー ---------- */
