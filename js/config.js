@@ -78,7 +78,6 @@ window.SITE = {
   /* ---------- 整体KOTOBUKIなら ---------- */
   solution: {
     heading: { en: "REASON", ja: "整体KOTOBUKIなら" },
-    lead: "その悩み、KOTOBUKIが変えます。",
     items: [
       {
         title: "資格・経験を活かして\n自費診療に挑戦できる！",
