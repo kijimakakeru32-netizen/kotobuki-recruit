@@ -1318,12 +1318,14 @@ body.no-splash #splash{display:none}
 }
 .prob-stage{position:relative;z-index:2}
 .prob-bubbles{
-  list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
+  list-style:none;display:grid;grid-template-columns:1fr 1fr;   /* 横に2個ずつ */
+  justify-items:center;align-items:center;
   /* 雲形は上下に約14%張り出すため、行間を広めに確保 */
   row-gap:clamp(34px,4.6vw,58px);
-  column-gap:clamp(22px,3vw,40px);
-  max-width:880px;margin:0 auto;
+  column-gap:clamp(26px,3.4vw,52px);
+  max-width:760px;margin:0 auto;
 }
+.prob-bubble{width:100%}
 .prob-bubble{
   position:relative;color:#232326;
   font-family:"Noto Sans JP",sans-serif;font-weight:700;
@@ -1363,12 +1365,19 @@ body.no-splash #splash{display:none}
   -webkit-mask-image:linear-gradient(180deg,#000 78%,rgba(0,0,0,.55) 92%,rgba(0,0,0,0) 100%);
           mask-image:linear-gradient(180deg,#000 78%,rgba(0,0,0,.55) 92%,rgba(0,0,0,0) 100%);
 }
+/* タブレット帯: 雲の張り出しが触れやすいので行間を追加 */
+@media (max-width:900px) and (min-width:701px){
+  .prob-bubbles{row-gap:52px;column-gap:30px;max-width:640px}
+}
 @media (max-width:700px){
-  /* スマホは1列にして、雲の張り出し分の余白を十分に取る */
-  .prob-bubbles{flex-direction:column;align-items:center;row-gap:30px;column-gap:0;max-width:340px}
-  .prob-bubble{font-size:13.5px;padding:16px 24px;width:100%}
+  /* スマホでも横2列。余白と文字を詰めて収める */
+  .prob-bubbles{row-gap:22px;column-gap:12px;max-width:100%}
+  .prob-bubble{font-size:12.5px;padding:15px 12px;line-height:1.5}
   .prob-bubble:nth-child(n){transform:none}
   .prob-photo{max-width:58vw}
+}
+@media (max-width:380px){
+  .prob-bubble{font-size:11.5px;padding:13px 8px}
 }
 
 /* =====================================================
