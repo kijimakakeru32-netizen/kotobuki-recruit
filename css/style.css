@@ -1290,3 +1290,112 @@ body.no-splash #splash{display:none}
   .sponsor-iso{width:clamp(150px,44vw,200px);margin:0 auto}
   .sponsor-logo{justify-content:center}
 }
+
+/* =====================================================
+   一般的な整体師のイメージ（お悩み）
+   ===================================================== */
+.problem-sec{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(120% 80% at 50% 0%, #3A3A3C 0%, #2B2B2D 45%, #1E1E20 100%);
+  padding-bottom:clamp(56px,8vw,110px);
+}
+/* 下端の切り返し（次セクションへの三角形の切り込み） */
+.problem-sec::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:clamp(38px,6vw,86px);
+  background:var(--white);
+  clip-path:polygon(0 100%, 0 0, 50% 62%, 100% 0, 100% 100%);
+}
+.prob-head{text-align:center;margin-bottom:clamp(34px,5vw,58px)}
+.prob-title{
+  font-family:"Noto Sans JP",sans-serif;color:var(--white);font-weight:900;
+  font-size:clamp(27px,5vw,50px);line-height:1.3;letter-spacing:.02em;
+}
+.prob-title span{
+  display:block;font-size:clamp(15px,2.2vw,24px);font-weight:700;margin-top:8px;
+  color:rgba(255,255,255,.92);
+}
+.prob-stage{position:relative;z-index:2}
+.prob-bubbles{
+  list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
+  gap:clamp(12px,1.8vw,22px);max-width:840px;margin:0 auto;
+}
+.prob-bubble{
+  position:relative;background:var(--white);color:#232326;
+  font-family:"Noto Sans JP",sans-serif;font-weight:700;
+  font-size:clamp(13.5px,1.5vw,17px);line-height:1.6;text-align:center;
+  padding:clamp(15px,1.8vw,22px) clamp(20px,2.4vw,30px);
+  border-radius:44px;box-shadow:0 14px 30px -16px rgba(0,0,0,.55);
+}
+/* 吹き出しのしっぽ */
+.prob-bubble::after{
+  content:"";position:absolute;left:34px;bottom:-9px;width:18px;height:18px;
+  background:var(--white);border-radius:0 0 6px 0;transform:rotate(28deg);
+}
+.prob-bubble:nth-child(even)::after{left:auto;right:34px;transform:rotate(-28deg);border-radius:0 0 0 6px}
+/* 交互に少しずらして手描き感を出す */
+.prob-bubble:nth-child(2){transform:translateY(14px)}
+.prob-bubble:nth-child(3){transform:translateY(-6px)}
+.prob-bubble:nth-child(5){transform:translateY(10px)}
+.prob-photo{max-width:min(380px,72vw);margin:clamp(18px,3vw,32px) auto 0}
+.prob-photo .imgbox{aspect-ratio:3/4;background:transparent;box-shadow:none}
+.prob-photo .imgbox img{object-fit:contain;object-position:bottom center}
+@media (max-width:700px){
+  .prob-bubbles{gap:12px}
+  .prob-bubble{font-size:13.5px;padding:13px 18px;border-radius:36px}
+  .prob-bubble:nth-child(n){transform:none}
+}
+
+/* =====================================================
+   整体KOTOBUKIなら（解決）
+   ===================================================== */
+.solution-sec{background:var(--white);position:relative}
+.sol-head{text-align:center;margin-bottom:clamp(34px,5vw,56px)}
+.sol-en{
+  font-family:var(--font-en);font-size:clamp(12px,1.4vw,15px);letter-spacing:.24em;
+  color:var(--blue-fresh-3);font-weight:700;display:block;margin-bottom:12px;
+}
+.sol-title{
+  font-family:"Noto Sans JP",sans-serif;font-weight:900;color:var(--navy-900);
+  font-size:clamp(24px,3.6vw,40px);line-height:1.4;
+}
+.sol-lead{
+  font-family:"Noto Sans JP",sans-serif;margin-top:14px;
+  font-size:clamp(14px,1.4vw,17px);color:var(--gray);
+}
+.sol-list{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,30px)}
+.sol-card{
+  position:relative;overflow:hidden;isolation:isolate;
+  display:flex;flex-direction:column;   /* 本文を下端に揃えて高さを均一に */
+  background:linear-gradient(160deg,#0E86DD 0%,#0A6CC4 100%);
+  color:var(--white);padding:clamp(30px,3.4vw,44px) clamp(24px,2.8vw,34px) clamp(28px,3.2vw,40px);
+  box-shadow:0 26px 54px -30px rgba(8,60,120,.7);
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+/* 背景の大きな番号＋光沢 */
+.sol-card::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(120% 90% at 85% 0%, rgba(255,255,255,.22) 0%, rgba(255,255,255,0) 55%);
+}
+.sol-no{
+  position:absolute;top:10px;right:16px;z-index:-1;
+  font-family:var(--font-en);font-size:clamp(64px,7vw,104px);line-height:1;
+  color:rgba(255,255,255,.18);pointer-events:none;
+}
+.sol-card h3{
+  font-family:"Noto Sans JP",sans-serif;font-weight:900;
+  font-size:clamp(16.5px,1.85vw,20px);line-height:1.55;margin-bottom:16px;
+  word-break:keep-all;overflow-wrap:break-word;   /* 文節で折り返す */
+}
+.sol-card p{
+  font-family:"Noto Sans JP",sans-serif;font-size:clamp(13.5px,1.15vw,14.5px);
+  line-height:1.95;color:rgba(255,255,255,.94);
+  padding-top:16px;border-top:1px solid rgba(255,255,255,.32);
+  margin-top:auto;
+}
+@media (hover:hover){
+  .sol-card:hover{transform:translateY(-8px);box-shadow:0 34px 64px -30px rgba(8,60,120,.8)}
+}
+@media (max-width:900px){
+  .sol-list{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+}

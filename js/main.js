@@ -234,6 +234,44 @@
   }
 
   /* ============ トップ:ムービー（YouTube埋め込み） ============ */
+  /* ============ 一般的な整体師のイメージ（お悩み） ============ */
+  function renderProblem() {
+    const el = $("#problem"); if (!el || !S.problem) return;
+    const p = S.problem;
+    el.innerHTML = `<div class="wrap">
+      <div class="prob-head rv">
+        <h2 class="prob-title">${esc(p.lead)}<span>${esc(p.leadSub || "")}</span></h2>
+      </div>
+      <div class="prob-stage${p.img ? " has-photo" : ""}">
+        <ul class="prob-bubbles">
+          ${p.items.map((t, i) => `<li class="prob-bubble rv rv-d${i % 3}"><span>${nl(t)}</span></li>`).join("")}
+        </ul>
+        ${p.img ? `<div class="prob-photo rv">${imgBox(p.img, "悩む整体師")}</div>` : ""}
+      </div>
+    </div>`;
+  }
+
+  /* ============ 整体KOTOBUKIなら ============ */
+  function renderSolution() {
+    const el = $("#solution"); if (!el || !S.solution) return;
+    const s = S.solution;
+    el.innerHTML = `<div class="wrap">
+      <div class="sol-head">
+        <span class="sol-en rv">${esc(s.heading.en)}</span>
+        <h2 class="sol-title rv">${esc(s.heading.ja)}</h2>
+        ${s.lead ? `<p class="sol-lead rv">${esc(s.lead)}</p>` : ""}
+      </div>
+      <div class="sol-list">
+        ${s.items.map((it, i) => `
+          <article class="sol-card rv rv-d${i % 3}">
+            <span class="sol-no">${String(i + 1).padStart(2, "0")}</span>
+            <h3>${nl(it.title)}</h3>
+            <p>${fmt(it.text)}</p>
+          </article>`).join("")}
+      </div>
+    </div>`;
+  }
+
   function renderSponsor() {
     const el = $("#sponsor"); if (!el || !S.sponsor) return;
     const s = S.sponsor;
@@ -943,6 +981,8 @@
     renderChrome();
     renderHero();
     renderGallery();
+    renderProblem();
+    renderSolution();
     renderSponsor();
     renderMovie();
     renderAbout();
