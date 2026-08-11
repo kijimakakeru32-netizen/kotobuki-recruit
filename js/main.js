@@ -251,6 +251,13 @@
     </div>`;
   }
 
+  /* 整体KOTOBUKIなら セクションのアイコン */
+  const SOL_ICONS = {
+    skill: `<svg viewBox="0 0 24 24"><path d="M12 3.4c-1.9-2.1-6-1.6-6 1.6-2.1.5-2.5 3.6-.6 4.7-1 1.9.5 4.2 2.6 4 .2 1.9 2.1 2.8 3.9 1.9V3.4Z"/><path d="M12 3.4c1.9-2.1 6-1.6 6 1.6 2.1.5 2.5 3.6.6 4.7 1 1.9-.5 4.2-2.6 4-.2 1.9-2.1 2.8-3.9 1.9"/><path d="M12 15.6V21"/><path d="M9 21h6"/></svg>`,
+    career: `<svg viewBox="0 0 24 24"><path d="M3 20h4v-6H3v6Z"/><path d="M10 20h4V9h-4v11Z"/><path d="M17 20h4V4h-4v16Z"/><path d="M4.5 10.5 9 6l3 2.5L19.5 2"/><path d="M15.5 2h4v4"/></svg>`,
+    reward: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><path d="M14.6 9.2c-.5-.9-1.5-1.4-2.6-1.4-1.5 0-2.6.8-2.6 2s1 1.7 2.6 2.1c1.7.4 2.8 1 2.8 2.2s-1.2 2.1-2.8 2.1c-1.2 0-2.2-.5-2.7-1.5"/><path d="M12 6.2v11.6"/></svg>`
+  };
+
   /* ============ 整体KOTOBUKIなら ============ */
   function renderSolution() {
     const el = $("#solution"); if (!el || !S.solution) return;
@@ -265,9 +272,14 @@
         ${s.items.map((it, i) => `
           <article class="sol-card rv rv-d${i % 3}">
             <span class="sol-no">${String(i + 1).padStart(2, "0")}</span>
+            <div class="sol-icon">${SOL_ICONS[it.icon] || SOL_ICONS.skill}</div>
             <h3>${nl(it.title)}</h3>
             <p>${fmt(it.text)}</p>
           </article>`).join("")}
+      </div>
+      <div class="sol-scroll rv" aria-hidden="true">
+        <span>${esc(s.scrollText || "KOTOBUKIのことを、もっと知る")}</span>
+        <i class="sol-arrow"></i>
       </div>
     </div>`;
   }
