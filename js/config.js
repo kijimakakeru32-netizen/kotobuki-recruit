@@ -63,8 +63,8 @@ window.SITE = {
   problem: {
     lead: "一般的な整体師",
     leadSub: "のイメージ",
-    /* 悩む人の写真（任意）。空欄ならイラスト無しのレイアウトになります */
-    img: "",
+    /* 悩む人の写真（背景透過PNG） */
+    img: "assets/img/problem-person.png",
     items: [
       "給与が上がらない",
       "キャリアアップが遅い",
