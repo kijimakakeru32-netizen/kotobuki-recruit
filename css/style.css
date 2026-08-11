@@ -1298,7 +1298,8 @@ body.no-splash #splash{display:none}
   position:relative;overflow:hidden;
   background:
     radial-gradient(120% 80% at 50% 0%, #3A3A3C 0%, #2B2B2D 45%, #1E1E20 100%);
-  padding-bottom:clamp(56px,8vw,110px);
+  /* 下端の切り返し(::after)の高さぶん余白を足し、人物が隠れないようにする */
+  padding-bottom:clamp(60px,9vw,120px);
 }
 /* 下端の切り返し（次セクションへの三角形の切り込み） */
 .problem-sec::after{
@@ -1318,7 +1319,10 @@ body.no-splash #splash{display:none}
 .prob-stage{position:relative;z-index:2}
 .prob-bubbles{
   list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
-  gap:clamp(12px,1.8vw,22px);max-width:840px;margin:0 auto;
+  /* 雲形は上下に約14%張り出すため、行間を広めに確保 */
+  row-gap:clamp(34px,4.6vw,58px);
+  column-gap:clamp(22px,3vw,40px);
+  max-width:880px;margin:0 auto;
 }
 .prob-bubble{
   position:relative;color:#232326;
@@ -1340,23 +1344,31 @@ body.no-splash #splash{display:none}
 .prob-bubble::after{bottom:-14%}
 .prob-bubble>span{position:relative;z-index:1;display:block}
 /* 一つずつ形と傾きを変えて手描きのランダム感に */
-.prob-bubble:nth-child(1){border-radius:52% 48% 44% 56%/48% 52% 46% 54%;transform:rotate(-1.4deg)}
-.prob-bubble:nth-child(2){border-radius:46% 54% 56% 44%/52% 44% 56% 48%;transform:translateY(16px) rotate(1.2deg)}
-.prob-bubble:nth-child(3){border-radius:56% 44% 48% 52%/44% 56% 48% 52%;transform:translateY(-8px) rotate(-1deg)}
-.prob-bubble:nth-child(4){border-radius:48% 52% 52% 48%/54% 46% 52% 48%;transform:rotate(1.5deg)}
-.prob-bubble:nth-child(5){border-radius:54% 46% 46% 54%/46% 54% 50% 50%;transform:translateY(12px) rotate(-1.2deg)}
-.prob-bubble:nth-child(6){border-radius:44% 56% 54% 46%/56% 44% 48% 52%;transform:translateY(-4px) rotate(1deg)}
+.prob-bubble:nth-child(1){border-radius:52% 48% 44% 56%/48% 52% 46% 54%;transform:rotate(-1.2deg)}
+.prob-bubble:nth-child(2){border-radius:46% 54% 56% 44%/52% 44% 56% 48%;transform:translateY(6px) rotate(1deg)}
+.prob-bubble:nth-child(3){border-radius:56% 44% 48% 52%/44% 56% 48% 52%;transform:translateY(-4px) rotate(-.8deg)}
+.prob-bubble:nth-child(4){border-radius:48% 52% 52% 48%/54% 46% 52% 48%;transform:rotate(1.2deg)}
+.prob-bubble:nth-child(5){border-radius:54% 46% 46% 54%/46% 54% 50% 50%;transform:translateY(5px) rotate(-1deg)}
+.prob-bubble:nth-child(6){border-radius:44% 56% 54% 46%/56% 44% 48% 52%;transform:translateY(-3px) rotate(.8deg)}
 .prob-photo{
-  max-width:min(430px,80vw);margin:clamp(6px,1.5vw,18px) auto calc(-1 * clamp(56px,8vw,110px));
+  /* サイズを控えめに。下端はセクション内に収める（見切れ防止） */
+  max-width:min(330px,62vw);
+  margin:clamp(24px,3.4vw,44px) auto 0;
   position:relative;z-index:1;
 }
 .prob-photo .imgbox{aspect-ratio:517/567;background:transparent;box-shadow:none}
-.prob-photo .imgbox img{object-fit:contain;object-position:bottom center}
+.prob-photo .imgbox img{
+  object-fit:contain;object-position:bottom center;
+  /* 下端を柔らかくフェードさせ、切れ目を目立たせない */
+  -webkit-mask-image:linear-gradient(180deg,#000 78%,rgba(0,0,0,.55) 92%,rgba(0,0,0,0) 100%);
+          mask-image:linear-gradient(180deg,#000 78%,rgba(0,0,0,.55) 92%,rgba(0,0,0,0) 100%);
+}
 @media (max-width:700px){
-  .prob-bubbles{gap:12px}
-  .prob-bubble{font-size:13.5px;padding:15px 20px}
+  /* スマホは1列にして、雲の張り出し分の余白を十分に取る */
+  .prob-bubbles{flex-direction:column;align-items:center;row-gap:30px;column-gap:0;max-width:340px}
+  .prob-bubble{font-size:13.5px;padding:16px 24px;width:100%}
   .prob-bubble:nth-child(n){transform:none}
-  .prob-photo{max-width:78vw}
+  .prob-photo{max-width:58vw}
 }
 
 /* =====================================================
