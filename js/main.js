@@ -284,37 +284,54 @@
     </div>`;
   }
 
-  /* ============ TECHNIC（学べる技術） ============ */
+  /* ============ TECHNIC（経験を、次の技術へ） ============ */
   function renderTechnic() {
     const el = $("#technic"); if (!el || !S.technic) return;
     const t = S.technic;
     el.innerHTML = `<div class="wrap">
       <div class="tec-head">
         <span class="tec-en rv">${esc(t.heading.en)}</span>
-        <h2 class="tec-lead rv">${esc(t.lead)}</h2>
-        ${t.leadSub ? `<p class="tec-leadsub rv">${esc(t.leadSub)}</p>` : ""}
+        <p class="tec-lead rv">${esc(t.lead)}</p>
       </div>
-
       <div class="tec-intro${t.img ? " has-photo" : ""}">
-        <div class="tec-body rv">${nl(t.body)}</div>
+        <div class="tec-txt">
+          <h2 class="tec-title rv">${nl(t.title)}</h2>
+          <div class="tec-body rv">${nl(t.body)}</div>
+        </div>
         ${t.img ? `<div class="tec-photo rv">${imgBox(t.img, "施術風景")}</div>` : ""}
       </div>
-
-      <div class="tec-learn">
-        <h3 class="tec-learn-title rv">${esc(t.itemsTitle)}</h3>
-        <div class="tec-list">
-          ${t.items.map((it, i) => `
-            <article class="tec-card rv rv-d${i % 3}">
-              <span class="tec-no">${esc(it.no)}</span>
-              <h4>${esc(it.title)}</h4>
-              <p>${fmt(it.text)}</p>
-            </article>`).join("")}
-        </div>
-      </div>
-
       <div class="tec-msg rv">
         ${t.messageLead ? `<p class="tec-msg-lead">${esc(t.messageLead)}</p>` : ""}
         <div class="tec-msg-body">${nl(t.message)}</div>
+      </div>
+    </div>`;
+  }
+
+  /* 学べること セクションのアイコン */
+  const LEARN_ICONS = {
+    nerve: `<svg viewBox="0 0 24 24"><path d="M12 4.6c-1.7-2-5.6-1.6-5.6 1.5-2 .4-2.4 3.4-.6 4.5-1 1.8.4 4.1 2.5 3.9.2 1.8 2 2.7 3.7 1.8V4.6Z"/><path d="M12 4.6c1.7-2 5.6-1.6 5.6 1.5 2 .4 2.4 3.4.6 4.5 1 1.8-.4 4.1-2.5 3.9-.2 1.8-2 2.7-3.7 1.8"/><path d="M12 16.3V21"/><path d="M9.4 21h5.2"/></svg>`,
+    hands: `<svg viewBox="0 0 24 24"><path d="M8.5 12.8V5.6a1.4 1.4 0 0 1 2.8 0v5.6"/><path d="M11.3 10.6V4.4a1.4 1.4 0 0 1 2.8 0v6.2"/><path d="M14.1 11V6.6a1.4 1.4 0 0 1 2.8 0v7.2c0 3.4-2.3 6-5.6 6-2.6 0-4.2-1.3-5.2-3.3l-1.4-2.8a1.4 1.4 0 0 1 2.3-1.6l1.5 1.7"/></svg>`,
+    support: `<svg viewBox="0 0 24 24"><path d="M20.4 12a8.4 8.4 0 1 0-3.2 6.6L20.4 20l-1-3.2c.6-1.4 1-2.9 1-4.8Z"/><path d="M8.6 10.4h6.8"/><path d="M8.6 13.8h4.4"/></svg>`
+  };
+
+  /* ============ KOTOBUKIで学べること ============ */
+  function renderLearn() {
+    const el = $("#learn"); if (!el || !S.learn) return;
+    const L = S.learn;
+    el.innerHTML = `<div class="wrap">
+      <div class="lrn-head">
+        <span class="lrn-en rv">${esc(L.heading.en)}</span>
+        <h2 class="lrn-title rv">${esc(L.heading.ja)}</h2>
+        ${L.lead ? `<p class="lrn-lead rv">${esc(L.lead)}</p>` : ""}
+      </div>
+      <div class="lrn-list">
+        ${L.items.map((it, i) => `
+          <article class="lrn-card rv rv-d${i % 3}">
+            <span class="lrn-no">${esc(it.no)}</span>
+            <div class="lrn-icon">${LEARN_ICONS[it.icon] || LEARN_ICONS.nerve}</div>
+            <h3>${esc(it.title)}</h3>
+            <p>${fmt(it.text)}</p>
+          </article>`).join("")}
       </div>
     </div>`;
   }
@@ -1031,6 +1048,7 @@
     renderProblem();
     renderSolution();
     renderTechnic();
+    renderLearn();
     renderSponsor();
     renderMovie();
     renderAbout();

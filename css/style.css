@@ -1480,83 +1480,48 @@ body.no-splash #splash{display:none}
 }
 
 /* =====================================================
-   TECHNIC（経験者向け・学べる技術）
+   TECHNIC（経験を、次の技術へ）
    ===================================================== */
 .technic-sec{
   position:relative;overflow:hidden;
   background:linear-gradient(180deg,#0B1B33 0%,#0E2747 55%,#0B1B33 100%);
   color:var(--white);
 }
-/* 背景の淡いブルーグロー */
 .technic-sec::before{
   content:"";position:absolute;top:-18%;right:-12%;width:58%;aspect-ratio:1;
   background:radial-gradient(circle,rgba(31,176,239,.22) 0%,rgba(31,176,239,0) 68%);
   pointer-events:none;
 }
-.tec-head{text-align:center;margin-bottom:clamp(34px,4.6vw,58px);position:relative}
+.tec-head{margin-bottom:clamp(26px,3.4vw,40px);position:relative}
 .tec-en{
   font-family:var(--font-en);font-size:clamp(12px,1.5vw,15px);letter-spacing:.26em;
-  color:var(--blue-fresh-1);font-weight:700;display:block;margin-bottom:14px;
+  color:var(--blue-fresh-1);font-weight:700;display:flex;align-items:center;gap:14px;margin-bottom:14px;
 }
+.tec-en::before{content:"";width:36px;height:2px;background:var(--blue-fresh-2);flex:none}
 .tec-lead{
   font-family:"Noto Sans JP",sans-serif;font-weight:900;
-  font-size:clamp(24px,3.8vw,42px);line-height:1.45;
+  font-size:clamp(20px,2.6vw,30px);line-height:1.5;color:rgba(255,255,255,.9);
 }
-.tec-leadsub{
-  font-family:"Noto Sans JP",sans-serif;margin-top:16px;
-  font-size:clamp(14px,1.4vw,17px);color:rgba(255,255,255,.78);
-}
-/* 導入文 */
-.tec-intro{position:relative;max-width:820px;margin:0 auto clamp(44px,6vw,80px)}
+/* 導入（左揃えの大見出し＋本文） */
+.tec-intro{position:relative;max-width:900px;margin:0 0 clamp(44px,6vw,80px)}
 .tec-intro.has-photo{
-  max-width:1080px;display:grid;grid-template-columns:1.05fr .95fr;
+  max-width:1100px;display:grid;grid-template-columns:1.05fr .95fr;
   gap:clamp(28px,4vw,60px);align-items:center;
 }
+.tec-title{
+  font-family:"Noto Sans JP",sans-serif;font-weight:900;text-align:left;
+  font-size:clamp(22px,3.2vw,38px);line-height:1.6;margin-bottom:clamp(22px,3vw,32px);
+  letter-spacing:.01em;
+}
 .tec-body{
-  font-family:"Noto Sans JP",sans-serif;
-  font-size:clamp(14.5px,1.3vw,16.5px);line-height:2.15;color:rgba(255,255,255,.92);
+  font-family:"Noto Sans JP",sans-serif;text-align:left;
+  font-size:clamp(14.5px,1.3vw,16.5px);line-height:2.15;color:rgba(255,255,255,.9);
   padding-left:clamp(16px,2vw,26px);border-left:3px solid var(--blue-fresh-2);
 }
 .tec-photo .imgbox{aspect-ratio:4/3;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
-/* 学べること */
-.tec-learn-title{
-  font-family:"Noto Sans JP",sans-serif;font-weight:900;text-align:center;
-  font-size:clamp(19px,2.4vw,27px);margin-bottom:clamp(26px,3.4vw,42px);
-  display:flex;align-items:center;justify-content:center;gap:16px;
-}
-.tec-learn-title::before,.tec-learn-title::after{
-  content:"";height:1px;width:clamp(24px,5vw,64px);background:rgba(255,255,255,.4);
-}
-.tec-list{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.2vw,26px)}
-.tec-card{
-  position:relative;padding:clamp(26px,3vw,36px) clamp(22px,2.6vw,30px);
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.16);
-  backdrop-filter:blur(6px);
-  transition:transform .5s var(--ease),background .5s var(--ease),border-color .5s var(--ease);
-}
-.tec-no{
-  font-family:var(--font-en);font-size:clamp(28px,3.4vw,40px);line-height:1;
-  color:var(--blue-fresh-1);display:block;margin-bottom:14px;
-}
-.tec-card h4{
-  font-family:"Noto Sans JP",sans-serif;font-weight:900;
-  font-size:clamp(15.5px,1.7vw,18px);line-height:1.55;margin-bottom:14px;
-}
-/* PCでは見出しの行数差を吸収して本文位置を揃える */
-@media (min-width:901px){
-  .tec-card h4{min-height:calc(1.55em * 2)}
-}
-.tec-card p{
-  font-family:"Noto Sans JP",sans-serif;font-size:clamp(13.5px,1.1vw,14.5px);
-  line-height:2;color:rgba(255,255,255,.82);
-}
-@media (hover:hover){
-  .tec-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.11);border-color:rgba(31,176,239,.6)}
-}
 /* 締めのメッセージ */
 .tec-msg{
-  margin-top:clamp(44px,6vw,84px);text-align:center;
+  margin-top:clamp(38px,5vw,70px);text-align:center;
   padding:clamp(30px,4vw,52px) clamp(22px,3vw,44px);
   background:linear-gradient(150deg,rgba(31,176,239,.16),rgba(10,108,196,.12));
   border:1px solid rgba(255,255,255,.18);
@@ -1570,6 +1535,83 @@ body.no-splash #splash{display:none}
   font-size:clamp(14px,1.25vw,16px);line-height:2.15;color:rgba(255,255,255,.88);
 }
 @media (max-width:900px){
-  .tec-list{grid-template-columns:1fr;max-width:520px;margin:0 auto}
   .tec-intro.has-photo{grid-template-columns:1fr}
+}
+
+/* =====================================================
+   KOTOBUKIで学べること（独立セクション）
+   ===================================================== */
+.learn-sec{
+  position:relative;overflow:hidden;background:var(--navy-50,#F3F7FC);
+}
+/* 背景の大きな英字ウォーターマーク */
+.learn-sec::before{
+  content:"LEARN";position:absolute;top:-2%;left:50%;transform:translateX(-50%);
+  font-family:var(--font-en);font-size:clamp(90px,17vw,240px);line-height:1;
+  color:rgba(14,134,221,.06);pointer-events:none;white-space:nowrap;
+}
+.lrn-head{text-align:center;margin-bottom:clamp(34px,4.8vw,58px);position:relative}
+.lrn-en{
+  font-family:var(--font-en);font-size:clamp(12px,1.4vw,15px);letter-spacing:.24em;
+  color:var(--blue-fresh-3);font-weight:700;display:block;margin-bottom:12px;
+}
+.lrn-title{
+  font-family:"Noto Sans JP",sans-serif;font-weight:900;color:var(--navy-900);
+  font-size:clamp(24px,3.6vw,40px);line-height:1.4;
+}
+.lrn-lead{
+  font-family:"Noto Sans JP",sans-serif;margin-top:14px;
+  font-size:clamp(14px,1.4vw,17px);color:var(--gray);
+}
+.lrn-list{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,30px)}
+.lrn-card{
+  position:relative;overflow:hidden;background:var(--white);
+  padding:clamp(34px,3.6vw,46px) clamp(24px,2.8vw,34px) clamp(30px,3.2vw,40px);
+  box-shadow:0 22px 50px -30px rgba(8,26,49,.35);
+  display:flex;flex-direction:column;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+/* 上部のアクセントバー */
+.lrn-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--blue-fresh-1),var(--blue-fresh-3));
+}
+/* 背景の大きな番号 */
+.lrn-no{
+  position:absolute;top:12px;right:18px;
+  font-family:var(--font-en);font-size:clamp(54px,6vw,80px);line-height:1;
+  color:transparent;-webkit-text-stroke:1.4px rgba(14,134,221,.22);pointer-events:none;
+}
+.lrn-icon{
+  width:clamp(58px,6vw,74px);height:clamp(58px,6vw,74px);
+  display:grid;place-items:center;margin-bottom:clamp(18px,2.2vw,24px);
+  background:linear-gradient(150deg,var(--blue-fresh-1),var(--blue-fresh-3));
+  border-radius:50%;box-shadow:0 14px 28px -14px rgba(10,108,196,.7);
+  transition:transform .5s var(--ease);
+}
+.lrn-icon svg{
+  width:52%;height:52%;fill:none;stroke:#fff;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.lrn-card h3{
+  font-family:"Noto Sans JP",sans-serif;font-weight:900;color:var(--navy-900);
+  font-size:clamp(16px,1.8vw,19px);line-height:1.55;margin-bottom:14px;
+}
+.lrn-card p{
+  font-family:"Noto Sans JP",sans-serif;font-size:clamp(13.5px,1.1vw,14.5px);
+  line-height:2;color:var(--ink);margin-top:auto;
+  padding-top:14px;border-top:1px solid var(--rule);
+}
+@media (min-width:901px){
+  /* 見出しの行数差を吸収して本文の開始位置を揃える */
+  .lrn-card h3{min-height:calc(1.55em * 2 + 4px);display:block}
+  .lrn-card p{margin-top:0}
+  .lrn-card{justify-content:flex-start}
+}
+@media (hover:hover){
+  .lrn-card:hover{transform:translateY(-8px);box-shadow:0 34px 62px -30px rgba(8,26,49,.45)}
+  .lrn-card:hover .lrn-icon{transform:scale(1.08) rotate(-5deg)}
+}
+@media (max-width:900px){
+  .lrn-list{grid-template-columns:1fr;max-width:520px;margin:0 auto}
 }
