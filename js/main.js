@@ -284,6 +284,41 @@
     </div>`;
   }
 
+  /* ============ TECHNIC（学べる技術） ============ */
+  function renderTechnic() {
+    const el = $("#technic"); if (!el || !S.technic) return;
+    const t = S.technic;
+    el.innerHTML = `<div class="wrap">
+      <div class="tec-head">
+        <span class="tec-en rv">${esc(t.heading.en)}</span>
+        <h2 class="tec-lead rv">${esc(t.lead)}</h2>
+        ${t.leadSub ? `<p class="tec-leadsub rv">${esc(t.leadSub)}</p>` : ""}
+      </div>
+
+      <div class="tec-intro${t.img ? " has-photo" : ""}">
+        <div class="tec-body rv">${nl(t.body)}</div>
+        ${t.img ? `<div class="tec-photo rv">${imgBox(t.img, "施術風景")}</div>` : ""}
+      </div>
+
+      <div class="tec-learn">
+        <h3 class="tec-learn-title rv">${esc(t.itemsTitle)}</h3>
+        <div class="tec-list">
+          ${t.items.map((it, i) => `
+            <article class="tec-card rv rv-d${i % 3}">
+              <span class="tec-no">${esc(it.no)}</span>
+              <h4>${esc(it.title)}</h4>
+              <p>${fmt(it.text)}</p>
+            </article>`).join("")}
+        </div>
+      </div>
+
+      <div class="tec-msg rv">
+        ${t.messageLead ? `<p class="tec-msg-lead">${esc(t.messageLead)}</p>` : ""}
+        <div class="tec-msg-body">${nl(t.message)}</div>
+      </div>
+    </div>`;
+  }
+
   function renderSponsor() {
     const el = $("#sponsor"); if (!el || !S.sponsor) return;
     const s = S.sponsor;
@@ -995,6 +1030,7 @@
     renderGallery();
     renderProblem();
     renderSolution();
+    renderTechnic();
     renderSponsor();
     renderMovie();
     renderAbout();
