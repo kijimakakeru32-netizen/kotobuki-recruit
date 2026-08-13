@@ -300,10 +300,7 @@
         </div>
         ${t.img ? `<div class="tec-photo rv">${imgBox(t.img, "施術風景")}</div>` : ""}
       </div>
-      <div class="tec-msg rv">
-        ${t.messageLead ? `<p class="tec-msg-lead">${esc(t.messageLead)}</p>` : ""}
-        <div class="tec-msg-body">${nl(t.message)}</div>
-      </div>
+      ${t.photo ? `<div class="tec-figure rv">${imgBox(t.photo, "施術風景")}</div>` : ""}
     </div>`;
   }
 

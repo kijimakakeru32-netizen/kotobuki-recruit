@@ -1519,20 +1519,21 @@ body.no-splash #splash{display:none}
   padding-left:clamp(16px,2vw,26px);border-left:3px solid var(--blue-fresh-2);
 }
 .tec-photo .imgbox{aspect-ratio:4/3;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
-/* 締めのメッセージ */
-.tec-msg{
-  margin-top:clamp(38px,5vw,70px);text-align:center;
-  padding:clamp(30px,4vw,52px) clamp(22px,3vw,44px);
-  background:linear-gradient(150deg,rgba(31,176,239,.16),rgba(10,108,196,.12));
-  border:1px solid rgba(255,255,255,.18);
+/* セクション下部の写真 */
+.tec-figure{
+  margin-top:clamp(38px,5vw,70px);
+  position:relative;
 }
-.tec-msg-lead{
-  font-family:"Noto Sans JP",sans-serif;font-weight:900;
-  font-size:clamp(18px,2.4vw,27px);margin-bottom:18px;color:var(--white);
+.tec-figure .imgbox{
+  aspect-ratio:16/9;
+  box-shadow:0 34px 70px -34px rgba(0,0,0,.8);
 }
-.tec-msg-body{
-  font-family:"Noto Sans JP",sans-serif;
-  font-size:clamp(14px,1.25vw,16px);line-height:2.15;color:rgba(255,255,255,.88);
+.tec-figure .imgbox img{transition:transform 1.1s var(--ease)}
+@media (hover:hover){
+  .tec-figure:hover .imgbox img{transform:scale(1.03)}
+}
+@media (max-width:700px){
+  .tec-figure .imgbox{aspect-ratio:4/3}
 }
 @media (max-width:900px){
   .tec-intro.has-photo{grid-template-columns:1fr}
