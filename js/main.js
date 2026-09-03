@@ -641,6 +641,21 @@
   }
 
   /* ============ トップ:CTA ============ */
+  /* LINEボタン下の補足＋安心材料（鍵・チェックのアイコン付き） */
+  function lineAssurance() {
+    const L = S.line || {};
+    const note = L.note ? `<p class="cta-note">${esc(L.note)}</p>` : "";
+    const list = (L.assurance && L.assurance.length)
+      ? `<div class="assure">
+           <span class="assure-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4.6" y="10.4" width="14.8" height="10" rx="2.2"/><path d="M8.2 10.4V7.6a3.8 3.8 0 0 1 7.6 0v2.8"/><circle cx="12" cy="15.2" r="1.25"/></svg></span>
+           <ul class="assure-list">
+             ${L.assurance.map(t => `<li><span class="assure-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.6l4.6 4.4L19 7.4"/></svg></span>${esc(t)}</li>`).join("")}
+           </ul>
+         </div>`
+      : "";
+    return note + list;
+  }
+
   function ctaInner() {
     return `
       <div class="cta-bg" aria-hidden="true">LINE US</div>
@@ -649,7 +664,7 @@
         <div class="cta-lines rv">
           ${S.cta.lines.map(l => `<p>${esc(l)}</p>`).join("")}
         </div>
-        <div class="rv rv-d1">${lineBtn(S.line.buttonText)}</div>
+        <div class="rv rv-d1">${lineBtn(S.line.buttonText)}${lineAssurance()}</div>
       </div>`;
   }
   function renderCTA() {
@@ -728,7 +743,7 @@
           <div class="cta-lines rv">
             ${S.cta.lines.map(l => `<p>${esc(l)}</p>`).join("")}
           </div>
-          <div class="rv rv-d1">${lineBtn(S.line.buttonText)}</div>
+          <div class="rv rv-d1">${lineBtn(S.line.buttonText)}${lineAssurance()}</div>
         </div>
       </section>`;
   }
@@ -771,7 +786,7 @@
           <div class="cta-lines rv">
             ${S.cta.lines.map(l => `<p>${esc(l)}</p>`).join("")}
           </div>
-          <div class="rv rv-d1">${lineBtn(S.line.buttonText)}</div>
+          <div class="rv rv-d1">${lineBtn(S.line.buttonText)}${lineAssurance()}</div>
         </div>
       </section>`;
   }
@@ -821,7 +836,7 @@
           <div class="cta-lines rv">
             ${S.cta.lines.map(l => `<p>${esc(l)}</p>`).join("")}
           </div>
-          <div class="rv rv-d1">${lineBtn(S.line.buttonText)}</div>
+          <div class="rv rv-d1">${lineBtn(S.line.buttonText)}${lineAssurance()}</div>
         </div>
       </section>`;
   }
@@ -1001,7 +1016,7 @@
           <div class="cta-lines rv">
             ${S.cta.lines.map(l => `<p>${esc(l)}</p>`).join("")}
           </div>
-          <div class="rv rv-d1">${lineBtn(S.line.buttonText)}</div>
+          <div class="rv rv-d1">${lineBtn(S.line.buttonText)}${lineAssurance()}</div>
         </div>
       </section>`;
   }
