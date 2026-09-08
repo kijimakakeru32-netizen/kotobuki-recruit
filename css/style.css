@@ -951,8 +951,10 @@ body.no-splash #splash{display:none}
    スマホFV: サイズ調整のみ（構成はPCと共通）
    ===================================================== */
 @media (max-width:640px){
-  .hero-copy{font-size:clamp(23px,7vw,29px)}
-  .hero-msg{padding-left:7%;padding-right:7%;justify-content:flex-start}
+  /* 2行目「救える患者様は増えましたか？」(14文字)が必ず1行に収まるサイズ。
+     利用可能幅=100%-10%(左右余白) に対し 14文字×字間込みで収まる値を採用 */
+  .hero-copy{font-size:min(5.5vw,26px);letter-spacing:.01em}
+  .hero-msg{padding-left:5%;padding-right:5%;justify-content:flex-start}
   .hero-sub{font-size:12px;line-height:1.85;color:rgba(255,255,255,.92)}
   .hero-en{font-size:10px;color:rgba(255,255,255,.8)}
 }
