@@ -571,6 +571,13 @@ window.SITE = {
 
   /* ---------- ヘッダーメニュー ----------
      children はスマホ・タブレットの全画面メニューに表示される小項目です */
+  /* スマホのヘッダー直下に出すクイックナビ（3項目） */
+  subNav: [
+    { text: "働く環境",       href: "index.html#environment" },
+    { text: "キャリアステップ", href: "index.html#career" },
+    { text: "募集要項",       href: "index.html#requirements" }
+  ],
+
   nav: [
     { text: "KOTOBUKIを知る", en: "ABOUT",       href: "index.html#about",
       children: [

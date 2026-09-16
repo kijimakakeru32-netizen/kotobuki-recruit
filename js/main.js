@@ -52,7 +52,7 @@
 
   function renderChrome() {
     // 既存のヘッダー/メニュー/フッター等を除去（再描画時の重複を防ぐ）
-    ["#header", "#mobile-menu", "#footer", "#sticky-cta", "#totop", "#splash"].forEach((sel) => {
+    ["#header", "#subnav", "#mobile-menu", "#footer", "#sticky-cta", "#totop", "#splash"].forEach((sel) => {
       const el = document.querySelector(sel);
       if (el && el.parentNode) el.parentNode.removeChild(el);
     });
@@ -70,6 +70,17 @@
         </button>
       </nav>`;
     document.body.prepend(header);
+
+    // スマホ用クイックナビ（ヘッダー直下）
+    if (S.subNav && S.subNav.length) {
+      const sn = document.createElement("nav");
+      sn.id = "subnav";
+      sn.setAttribute("aria-label", "クイックナビゲーション");
+      sn.innerHTML = `<div class="subnav-inner">
+        ${S.subNav.map(n => `<a class="subnav-item" href="${esc(n.href)}">${esc(n.text)}</a>`).join("")}
+      </div>`;
+      header.after(sn);
+    }
 
     // スマホ全画面メニュー
     const mm = document.createElement("nav");
