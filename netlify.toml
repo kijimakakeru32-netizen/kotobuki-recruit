@@ -10,11 +10,17 @@
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
-# config.js は更新頻度が高いのでキャッシュを短めに
+# config.js・main.js は更新のたび即反映させたいのでキャッシュしない
+# （must-revalidate により、毎回サーバーに最新か確認してから表示します）
 [[headers]]
-  for = "/js/config.js"
+  for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=300"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/*"
