@@ -30,9 +30,9 @@ window.SITE = {
   /* ---------- LINE（すべてのCTAボタンの飛び先） ---------- */
   line: {
     url: "https://line.me/R/ti/p/@688grfoi?oat_content=url&ts=06241006",     // 公式LINEの登録URL
-    buttonText: "LINE追加で詳細ゲット💭",
-    shortText: "LINE追加で詳細ゲット💭",   // スマホのヘッダーボタン用
-    stickyText: "LINE追加で詳細ゲット💭",  // スマホ下部の追従ボタンの文言
+    buttonText: "LINE追加で詳細ゲット",
+    shortText: "LINE追加で詳細ゲット",   // スマホのヘッダーボタン用
+    stickyText: "LINE追加で詳細ゲット",  // スマホ下部の追従ボタンの文言
     note: "",        // ボタン下の補足（空にすると非表示）
     assurance: []    // 安心材料（空にすると非表示）
   },
